@@ -4,7 +4,7 @@ PriceWatch is a full-stack price tracking application that lets users monitor pr
 
 ## Live Demo
 
-- **Frontend:** YOUR-FRONTEND-URL
+- **Frontend:** [Live Demo!](https://pricewatch-frontend-uwc2.onrender.com/)
 - **Backend API:** https://pricewatch-api-chrt.onrender.com
 - **Database:** Neon PostgreSQL
 
