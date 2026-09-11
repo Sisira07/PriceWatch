@@ -4,7 +4,7 @@
 
 // Change this if your API runs on a different host/port. This matches the
 // docker-compose.yml default and the API_ADDR in .env.example.
-const API_BASE = "http://localhost:8080";
+const API_BASE = "https://pricewatch-api-chrt.onrender.com";
 
 const TOKEN_KEY = "pricewatch_token";
 
