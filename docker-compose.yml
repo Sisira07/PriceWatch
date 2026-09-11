@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: pricewatch
+      POSTGRES_PASSWORD: pricewatch
+      POSTGRES_DB: pricewatch
+    ports:
+      - "5433:5432"
+    volumes:
+      - pricewatch_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pricewatch -d pricewatch"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://pricewatch:pricewatch@postgres:5432/pricewatch?sslmode=disable
+      JWT_SECRET: change-me-in-production
+      API_ADDR: ":8080"
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://pricewatch:pricewatch@postgres:5432/pricewatch?sslmode=disable
+      WORKER_INTERVAL_SECONDS: "60"
+    restart: unless-stopped
+
+volumes:
+  pricewatch_pgdata:
