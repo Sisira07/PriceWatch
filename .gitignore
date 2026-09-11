@@ -1,0 +1,16 @@
+# Go build artifacts
+/api
+/worker
+*.exe
+*.test
+
+# Env files with real secrets — never commit these
+.env
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Docker volumes are managed by Docker itself, not gitv
