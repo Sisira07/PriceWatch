@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PriceWatch — Item Detail</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">Price<span>Watch</span></div>
+    <div class="navbar-actions">
+      <button class="btn-secondary btn-sm" id="simulate-btn">Simulate price check now</button>
+      <button class="btn-secondary btn-sm" id="logout-btn">Log out</button>
+    </div>
+  </nav>
+
+  <div class="page">
+    <a href="dashboard.html" class="back-link">&larr; Back to dashboard</a>
+
+    <div id="loading" class="loading-text">Loading item…</div>
+    <div id="not-found" class="empty-state" style="display:none;">Item not found.</div>
+
+    <div id="item-content" style="display:none;">
+      <!-- Item info + edit -->
+      <div class="card">
+        <div class="card-header">
+          <h2 id="item-name" style="margin:0;"></h2>
+          <span id="item-status-badge" class="badge"></span>
+        </div>
+        <p><a id="item-url-link" href="#" target="_blank" rel="noopener"></a></p>
+        <div class="price-row" style="font-size:1rem; margin-bottom:16px;">
+          <span>Target: <strong id="item-target-price"></strong></span>
+          <span>Current: <strong id="item-current-price"></strong></span>
+        </div>
+
+        <form id="edit-item-form">
+          <div class="form-row">
+            <div class="field">
+              <label for="edit-name">Name</label>
+              <input type="text" id="edit-name" required />
+            </div>
+            <div class="field">
+              <label for="edit-url">Product URL</label>
+              <input type="url" id="edit-url" required />
+            </div>
+            <div class="field" style="max-width:160px;">
+              <label for="edit-target">Target price ($)</label>
+              <input type="number" id="edit-target" step="0.01" min="0.01" required />
+            </div>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="edit-active" />
+            <label for="edit-active">Actively watching this item</label>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button type="submit" class="btn-primary" id="edit-submit">Save changes</button>
+            <button type="button" class="btn-danger" id="delete-btn">Delete item</button>
+          </div>
+          <div class="error-text" id="edit-error"></div>
+        </form>
+      </div>
+
+      <!-- Price history -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="section-title" style="margin:0;">Price history</h3>
+        </div>
+        <div id="history-empty" class="empty-state" style="display:none;">
+          No price checks recorded yet. Try "Simulate price check now" above.
+        </div>
+        <table id="history-table" style="display:none;">
+          <thead>
+            <tr><th>Price</th><th>Checked at</th></tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Notifications -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="section-title" style="margin:0;">Notifications</h3>
+        </div>
+        <div id="notifications-empty" class="empty-state" style="display:none;">
+          No notifications yet — you'll see one here the moment the price hits your target.
+        </div>
+        <div id="notification-list" class="notification-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/item.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PriceWatch — Sign in</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="centered-page">
+    <div class="card auth-card">
+      <div class="card-header" style="justify-content:center; flex-direction:column; gap:4px;">
+        <h2 style="margin:0;">PriceWatch</h2>
+        <p class="helper-text" style="margin:0;">Track prices. Get notified when they drop.</p>
+      </div>
+
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login">Login</div>
+        <div class="auth-tab" id="tab-register">Register</div>
+      </div>
+
+      <!-- Login form -->
+      <form id="login-form">
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn-primary btn-block" id="login-submit">Log in</button>
+        <div class="error-text" id="login-error"></div>
+      </form>
+
+      <!-- Register form -->
+      <form id="register-form" style="display:none;">
+        <div class="field">
+          <label for="register-email">Email</label>
+          <input type="email" id="register-email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" required autocomplete="new-password" minlength="8" />
+          <div class="helper-text">At least 8 characters.</div>
+        </div>
+        <button type="submit" class="btn-primary btn-block" id="register-submit">Create account</button>
+        <div class="error-text" id="register-error"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
