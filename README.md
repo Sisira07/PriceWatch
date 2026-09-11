@@ -12,7 +12,8 @@ PriceWatch is a full-stack price tracking application that lets users monitor pr
 
 ## Preview
 
-<img width="1142" height="650" alt="image" src="https://github.com/user-attachments/assets/2da4fba6-e600-4451-8bc8-dea95340002a" />
+<img width="1096" height="880" alt="image" src="https://github.com/user-attachments/assets/fa0274cf-a8d1-4e09-b622-6cd25d234048" />
+
 
 ## Features
 
